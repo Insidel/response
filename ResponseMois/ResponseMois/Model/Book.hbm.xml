@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="ResponseMois"
+                   namespace="ResponseMois.Model">
+
+  <class name="Book" table="Book">
+    <id name="ID">
+      <generator class="identity" />
+    </id>
+    <property name="Title" />
+    <property name="Isbn" />
+    <property name="Author" />
+  </class>
+
+</hibernate-mapping>
+
