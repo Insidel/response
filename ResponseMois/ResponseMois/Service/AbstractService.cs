@@ -9,8 +9,6 @@ namespace ResponseMois.Service
 {
     public abstract class AbstractService<T> where T : AbstractEntity, new()
     {
-        //private static IEntityManager<T> entityMng = new DummyEntityManager<T>();
-        //private static IEntityManager<T> entityMng = new ADOEntityManager<T>();
         private static IEntityManager<T> entityMng = new NHibernateEntityManager<T>();
 
         protected IEntityManager<T> EntityManager { get { return entityMng; } }

@@ -10,6 +10,7 @@ namespace ResponseMois
     public partial class Startup
     {
         private BookService bookService = new BookService();
+        private UserService userService = new UserService();
 
         public void Configuration(IAppBuilder app)
         {
@@ -19,10 +20,13 @@ namespace ResponseMois
             // only debug
 
             TableSchemaGenerator generator = new TableSchemaGenerator();
-            generator.Generate();
+            //generator.Generate();
 
-            Book book = new Book(); 
+            Book book = new Book();
             bookService.Persist(book);
+
+            User user = new User();
+            userService.Persist(user);
         }
     }
 }

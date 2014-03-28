@@ -173,10 +173,13 @@
     <Compile Include="Model\AbstractEntity.cs" />
     <Compile Include="Model\AccountViewModels.cs" />
     <Compile Include="Model\Book.cs" />
+    <Compile Include="Model\Course.cs" />
     <Compile Include="Model\IAbstractEntity.cs" />
     <Compile Include="Model\IdentityModels.cs" />
+    <Compile Include="Model\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\AbstractService.cs" />
+    <Compile Include="Service\UserService.cs" />
     <Compile Include="Service\BookService.cs" />
     <Compile Include="Service\IEntityManager.cs" />
     <Compile Include="Service\NHibernateEntityManager.cs" />
@@ -191,6 +194,12 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <EmbeddedResource Include="Model\Book.hbm.xml" />
+    <EmbeddedResource Include="Model\User.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Model\Course.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="hibernate.cfg.xml" />

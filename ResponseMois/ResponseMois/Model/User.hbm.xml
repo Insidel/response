@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="ResponseMois"
+                   namespace="ResponseMois.Model">
+
+  <class name="User" table="User">
+    <id name="ID">
+      <generator class="identity" />
+    </id>
+    <property name="userName" />
+    <property name="firstName" />
+    <property name="lastName" />
+    <property name="password" />
+    <property name="role" />
+    <property name="birthDate" />
+    <property name="sex" />
+    <property name="address" />
+    <property name="city" />
+    <property name="postNumber" />
+    <property name="telephone" />
+    <property name="email" />
+    <property name="telephoneParent" />
+    <property name="emailParent" />
+    <property name="class_teacher_id" />
+  </class>
+
+</hibernate-mapping>
+

@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="ResponseMois"
+                   namespace="ResponseMois.Model">
+
+  <class name="Course" table="Course">
+    <id name="ID">
+      <generator class="identity" />
+    </id>
+    <property name="name" />
+    <property name="teacher_id" />
+    <property name="schoolYear" />
+    <property name="meetingTime" />
+    <property name="note" />
+  </class>
+
+</hibernate-mapping>
+
