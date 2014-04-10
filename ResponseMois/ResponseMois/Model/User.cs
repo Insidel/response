@@ -7,9 +7,9 @@ namespace ResponseMois.Model
 {
     public class User : AbstractEntity
     {
-        public virtual string userName { get; set; }
         public virtual string firstName { get; set; }
         public virtual string lastName { get; set; }
+        public virtual string userName { get; set; }
         public virtual string password { get; set; }
         public virtual string role { get; set; }
         public virtual DateTime birthDate { get; set; }
@@ -26,12 +26,12 @@ namespace ResponseMois.Model
         public User(){
 
         }
-        public User(string userName, string firstName, string lastName, string password, string role, DateTime birthDate, string sex, string address, string city,
+        public User(string userName, string password, string role, string firstName, string lastName, DateTime birthDate, string sex, string address, string city,
                     int postNumaber, int telephone, string email, int telephoneParent, string emailParent, string class_teacher_id)
         {
-            this.userName = userName;
             this.firstName = firstName;
             this.lastName = lastName;
+            this.userName = userName;
             this.password = password;
             this.role = role;
             this.birthDate = birthDate;

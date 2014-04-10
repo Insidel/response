@@ -26,11 +26,17 @@ namespace ResponseMois.Service
             }
         }
 
-        public IList<T> GetAll(T entity)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="entity">entity to return</param>
+        /// <param name="tableFrom">from table</param>
+        /// <returns></returns>
+        public IList<T> GetAll(T entity, String tableFrom)
         {
             using (ISession session = NHibernateHelper.OpenSession())
             {
-                IQuery query = session.CreateQuery("from Book");
+                IQuery query = session.CreateQuery(tableFrom);
                 var entities = query.List<T>();
                 return entities;
             }

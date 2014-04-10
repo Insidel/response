@@ -8,9 +8,9 @@
       <generator class="identity" />
     </id>
     <property name="userName" />
+    <property name="password" />
     <property name="firstName" />
     <property name="lastName" />
-    <property name="password" />
     <property name="role" />
     <property name="birthDate" />
     <property name="sex" />

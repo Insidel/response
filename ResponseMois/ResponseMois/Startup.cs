@@ -20,13 +20,13 @@ namespace ResponseMois
             // only debug
 
             TableSchemaGenerator generator = new TableSchemaGenerator();
-            //generator.Generate();
+            // generator.Generate();
 
             Book book = new Book();
-            bookService.Persist(book);
+            // bookService.Persist(book);
 
             User user = new User();
-            userService.Persist(user);
+            // userService.Persist(user);
         }
     }
 }

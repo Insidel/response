@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace ResponseMois.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : SecurityController
     {
         public ActionResult Index()
         {
@@ -26,5 +26,6 @@ namespace ResponseMois.Controllers
 
             return View();
         }
+
     }
 }

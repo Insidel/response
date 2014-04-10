@@ -8,6 +8,7 @@
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
+@model ResponseMois.Model.User
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
@@ -23,6 +24,26 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Kontakt", "Contact", "Home")</li>
                 </ul>
+                @if (User.Identity.IsAuthenticated && ViewBag.isInRoleTeacher)
+                {
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Testy", "TestsEdit", "Teacher")</li>
+                </ul>
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Studenti", "StudentsEdit", "Teacher")</li>
+                </ul>
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Kurzy", "CoursesEdit", "Teacher")</li>
+                </ul>
+                }
+                
+                @if (User.Identity.IsAuthenticated && ViewBag.isInRoleStudent)
+                {
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Kurzy", "Courses", "Student")</li>
+                    </ul>
+                }
+
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
@@ -31,7 +52,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Response system by valentfi1 & zmitkma1</p>
+            <p>&copy; @DateTime.Now.Year - Response system by valenfi1 & zmitkma1</p>
         </footer>
     </div>
 

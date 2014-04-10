@@ -18,9 +18,9 @@ namespace ResponseMois.Service
             return EntityManager.Find(new T(), id);
         }
 
-        public IList<T> GetAll()
+        public IList<T> GetAll(String from)
         {
-            return EntityManager.GetAll(new T());
+            return EntityManager.GetAll(new T(), from);
         }
 
         public T Persist(T entity)

@@ -13,7 +13,7 @@ namespace ResponseMois.Service
         T Find(T entity, long id);
         T Persist(T entity);
         void Update(Book r);
-        IList<T> GetAll(T entity);
+        IList<T> GetAll(T entity, String fromTable);
         
     }
 }

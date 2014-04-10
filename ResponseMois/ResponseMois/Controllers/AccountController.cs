@@ -5,15 +5,18 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using ResponseMois.Model;
+using ResponseMois.Service;
+using System.Diagnostics;
 
 namespace ResponseMois.Controllers
 {
     [Authorize]
-    public class AccountController : Controller
+    public class AccountController : SecurityController
     {
         public AccountController()
             : this(new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext())))
@@ -45,49 +48,18 @@ namespace ResponseMois.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = await UserManager.FindAsync(model.UserName, model.Password);
-                if (user != null)
+                // var user = await UserManager.FindAsync(model.UserName, model.Password);
+                UserService userService = new UserService();
+                User u = userService.GetUserByEmail(model.UserEmail);
+                if (u != null && u.password.Equals(FormsAuthentication.HashPasswordForStoringInConfigFile(model.Password, "SHA1").ToLower()))
                 {
-                    await SignInAsync(user, model.RememberMe);
+                    // await SignInAsync(user, model.RememberMe);
+                    FormsAuthentication.SetAuthCookie(model.UserEmail, false);
                     return RedirectToLocal(returnUrl);
                 }
                 else
                 {
                     ModelState.AddModelError("", "Invalid username or password.");
-                }
-            }
-
-            // If we got this far, something failed, redisplay form
-            return View(model);
-        }
-
-        //
-        // GET: /Account/Register
-        [AllowAnonymous]
-        public ActionResult Register()
-        {
-            return View();
-        }
-
-        //
-        // POST: /Account/Register
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                var user = new ApplicationUser() { UserName = model.UserName };
-                var result = await UserManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
-                {
-                    await SignInAsync(user, isPersistent: false);
-                    return RedirectToAction("Index", "Home");
-                }
-                else
-                {
-                    AddErrors(result);
                 }
             }
 
@@ -289,7 +261,7 @@ namespace ResponseMois.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
-            AuthenticationManager.SignOut();
+            FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");
         }
 

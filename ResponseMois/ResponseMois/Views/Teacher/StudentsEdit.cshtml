@@ -1,0 +1,40 @@
+﻿@{
+    ViewBag.Title = "Editace studentů";
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+<p>Sekce pro přidávání studentů do systému.</p>
+
+
+<h4>Přehled studentů</h4>
+
+
+@Html.ActionLink("Přidání studenta do systému", "Register", "Teacher",  new {@class = "btn btn-success"}) 
+<br /><br />
+
+<table class="table table-striped">
+    <tr>
+        <th>Jméno:</th>
+        <th>Příjmení:</th>
+        <th>Uzivatel:</th>
+        <th>Pohlaví:</th>
+        <th>Datum narození:</th>
+        <th>Adresa:</th>
+        <th></th>
+        
+    </tr>
+    @foreach (var st in ViewBag.students)
+    {
+        
+        <tr>
+            <td>@st.firstName</td>
+            <td>@st.lastName</td>
+            <td>@st.userName</td>
+            <td>@st.sex</td>
+            <td>@st.birthDate</td>
+            <td>@st.address @st.postNumber, @st.city</td>
+            <td><a href="@Url.Action("register/edit", "Teacher")"><span class="glyphicon glyphicon-edit"></span></a></td>
+        </tr>
+    }
+</table>

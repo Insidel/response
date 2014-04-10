@@ -31,8 +31,8 @@ namespace ResponseMois.Model
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "User name")]
-        public string UserName { get; set; }
+        [Display(Name = "User email")]
+        public string UserEmail { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
