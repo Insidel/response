@@ -10,5 +10,28 @@
 
 <h4>Přehled kurzů</h4>
 
+@Html.ActionLink("Přidání kurzu do systému", "CourseAdd", "Teacher", new { @class = "btn btn-success" })
+<br /><br />
 
-<h4>Přidání kurzu do systému</h4>
+<table class="table table-striped">
+    <tr>
+        <th>Název:</th>
+        <th>Školní rok:</th>
+        <th>Čas konání:</th>
+        <th>poznamka:</th>
+        <th></th>
+        <th></th>
+    </tr>
+    @foreach (var c in ViewBag.courses)
+    {
+
+        <tr>
+            <td>@c.name</td>
+            <td>@c.schoolYear</td>
+            <td>@c.meetingTime</td>
+            <td>@c.note</td>
+            <td><a href="@Url.Action("course/detail", "Teacher")"><span class="glyphicon glyphicon-edit"></span></a></td>
+            <td><a href="@Url.Action("course/remove", "Teacher")"><span class="glyphicon glyphicon-remove"></span></a></td>   
+        </tr>
+    }
+</table>
