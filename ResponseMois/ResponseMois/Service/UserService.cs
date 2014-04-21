@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using ResponseMois.Model;
+using NHibernate;
+using NHibernate.Criterion;
 
 namespace ResponseMois.Service
 {
@@ -22,6 +24,21 @@ namespace ResponseMois.Service
             }
 
             return user;
+        }
+
+        public IList<User> GetAllStudents()
+        {
+
+
+            using (ISession session = NHibernateHelper.OpenSession())
+            {
+                return session
+                    .CreateCriteria(typeof(User))
+                    .Add(Restrictions.Eq("role", "student"))
+                    .List<User>();
+
+            }
+
         }
 
     }

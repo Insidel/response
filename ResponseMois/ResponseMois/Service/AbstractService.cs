@@ -1,4 +1,6 @@
-﻿using ResponseMois.Model;
+﻿using NHibernate;
+using NHibernate.Criterion;
+using ResponseMois.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,5 +29,15 @@ namespace ResponseMois.Service
         {
             return EntityManager.Persist(entity);
         }
+
+        public void Delete<T>(int id)
+        {
+            using (ISession session = NHibernateHelper.OpenSession())
+            {
+                var queryString = string.Format("delete {0} where id = :id", typeof(T));
+                session.CreateQuery(queryString).SetParameter("id", id).ExecuteUpdate();
+            }
+        }
+
     }
 }

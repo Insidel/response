@@ -58,7 +58,7 @@ namespace ResponseMois.Controllers
             ViewBag.Message = "Úprava studentů.";
 
             UserService userService = new UserService();
-            IList<User> userList = userService.GetAll("from User"); //TODO WHERE role = student
+            IList<User> userList = userService.GetAllStudents(); 
 
             ViewBag.students = userList;
             return View();
@@ -74,7 +74,8 @@ namespace ResponseMois.Controllers
             ViewBag.Message = "Úprava kurzů.";
 
             CourseService courseService = new CourseService();
-            IList<Course> courseList = courseService.GetAll("from Course"); //TODO teacher_id is user
+            User u = GetUserLogedInByEmail();
+            IList<Course> courseList = courseService.GetAllCoursesToUser(u); 
 
             ViewBag.courses = courseList;
 
@@ -94,19 +95,21 @@ namespace ResponseMois.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> CourseAdd(Course model)
         {
+            Debug.Write("ano");
             if (ModelState.IsValid)
             {
+                User loggedUser = GetUserLogedInByEmail();
                 Course c = new Course();
                 c.name = model.name;
                 c.schoolYear = model.schoolYear;
                 c.meetingTime = model.meetingTime;
                 c.note = model.note;
-               //TODO c.teacher_id = this.user.id;
+                c.teacher_id = (int)loggedUser.ID;
                 CourseService courseService = new CourseService();
                 courseService.Persist(c);
             }
 
-            return View(model);
+            return RedirectToAction("CoursesEdit", new { Message = "Kurz byl přidán." });
         }
 
         //
@@ -145,5 +148,14 @@ namespace ResponseMois.Controllers
             }
         }
 
+        //
+        // GET: /Teacher/CourseRemove
+        public ActionResult CourseRemove(int id)
+        {
+            CourseService courseService = new CourseService();
+            courseService.Delete<Course>(id);
+
+            return RedirectToAction("CoursesEdit", new { Message = "Kurz byl smazán." });
+        }
 	}
 }
