@@ -16,7 +16,7 @@ namespace ResponseMois.Service
 
         }
         
-        public T Find(T entity, long id)
+        public T Find(T entity, int id)
         {
             using (ISession session = NHibernateHelper.OpenSession())
             {
@@ -24,6 +24,14 @@ namespace ResponseMois.Service
 
                 return fromDb as T;
             }
+        }
+        
+        public T FindLazy(T entity, int id)
+        {
+            ISession session = NHibernateHelper.OpenSession();
+            var fromDb = session.Get<T>(id);
+
+            return fromDb as T;
         }
 
         /// <summary>

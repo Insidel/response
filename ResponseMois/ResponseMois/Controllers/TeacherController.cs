@@ -95,7 +95,6 @@ namespace ResponseMois.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> CourseAdd(Course model)
         {
-            Debug.Write("ano");
             if (ModelState.IsValid)
             {
                 User loggedUser = GetUserLogedInByEmail();
@@ -104,7 +103,7 @@ namespace ResponseMois.Controllers
                 c.schoolYear = model.schoolYear;
                 c.meetingTime = model.meetingTime;
                 c.note = model.note;
-                c.teacher_id = (int)loggedUser.ID;
+                c.Teacher = loggedUser;
                 CourseService courseService = new CourseService();
                 courseService.Persist(c);
             }
@@ -130,14 +129,27 @@ namespace ResponseMois.Controllers
             if (ModelState.IsValid)
             {
                 User u = new User();
+                u.userName = model.userName;
                 u.firstName = model.firstName;
                 u.role = SecurityController.ROLE_STUDENT;
+                u.firstName = model.firstName;
+                u.lastName = model.lastName;
+                u.birthDate = model.birthDate;
+                u.sex = model.sex;
+                u.email = model.email;
+                u.telephone = model.telephone;
+                u.address = model.address;
+                u.city = model.city;
+                u.postNumber = model.postNumber;
+                u.telephoneParent = model.telephoneParent;
+                u.emailParent = model.emailParent;
+                u.password = FormsAuthentication.HashPasswordForStoringInConfigFile("martin", "SHA1").ToLower();
+
                 UserService userService = new UserService();
                 userService.Persist(u);
             }
 
-            // If we got this far, something failed, redisplay form
-            return View(model);
+            return RedirectToAction("StudentsEdit", new { Message = "Student byl přidán." });
         }
 
         private void AddErrors(IdentityResult result)
@@ -157,5 +169,56 @@ namespace ResponseMois.Controllers
 
             return RedirectToAction("CoursesEdit", new { Message = "Kurz byl smazán." });
         }
+
+        //
+        // GET: /Teacher/StudentRemove
+        public ActionResult StudentRemove(int id)
+        {
+            CourseService courseService = new CourseService();
+            courseService.Delete<User>(id);
+
+            return RedirectToAction("StudentsEdit", new { Message = "Student byl smazán." });
+        }
+
+
+        //
+        // GET: /Teacher/CourseDetail
+        public ActionResult CourseDetail(int id)
+        {
+            CourseService courseService = new CourseService();
+            ViewBag.course = courseService.FindByIdLazy((int)id);
+
+
+            ViewBag.teacher = ViewBag.course.Teacher;
+
+            return View();
+        }
+
+
+        //
+        // GET: /Teacher/CourseAssignStudents
+        public ActionResult CourseAssignStudents()
+        {
+            UserService userService = new UserService();
+            IList<User> userList = userService.GetAllStudents();  //GetAllStudentsNotInCourse();
+
+            ViewBag.students = userList;
+
+            return View();
+        }
+
+
+        //
+        // POST: /Teacher/CourseAssignStudents
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CourseAssignStudents(Course model)
+        {
+               //TODO many-to-many
+         
+            return View();
+        }
+
+
 	}
 }

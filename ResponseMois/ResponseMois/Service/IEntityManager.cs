@@ -10,7 +10,9 @@ namespace ResponseMois.Service
     public interface IEntityManager<T> where T : AbstractEntity
     {
        
-        T Find(T entity, long id);
+        T Find(T entity, int id);
+        T FindLazy(T entity, int id);
+
         T Persist(T entity);
         void Update(Book r);
         IList<T> GetAll(T entity, String fromTable);

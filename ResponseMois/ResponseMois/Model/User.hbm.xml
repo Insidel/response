@@ -3,7 +3,7 @@
                    assembly="ResponseMois"
                    namespace="ResponseMois.Model">
 
-  <class name="User" table="User">
+  <class name="User" table="User" lazy="true">
     <id name="ID">
       <generator class="identity" />
     </id>

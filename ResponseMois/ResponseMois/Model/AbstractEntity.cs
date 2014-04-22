@@ -15,7 +15,7 @@ namespace ResponseMois.Model
         /// <summary>
         /// Primary key
         /// </summary>
-        public virtual long? ID
+        public virtual int? ID
         {
             get;
             set;

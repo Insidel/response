@@ -1,0 +1,25 @@
+//
+        // POST: /Account/Login
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
+        {
+            if (ModelState.IsValid)
+            {
+                UserService userService = new UserService();
+                User u = userService.GetUserByEmail(model.UserName);
+                if (u != null)
+                {
+                    FormsAuthentication.SetAuthCookie(model.UserName, false);
+                    return RedirectToLocal(returnUrl);
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Invalid username or password.");
+                }
+            }
+
+            // If we got this far, something failed, redisplay form
+            return View(model);
+        }

@@ -8,6 +8,6 @@ namespace ResponseMois.Model
 {
     public interface IAbstractEntity
     {
-        long? ID { get; set; }
+        int? ID { get; set; }
     }
 }

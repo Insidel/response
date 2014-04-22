@@ -19,7 +19,7 @@ namespace ResponseMois.Model
 
         public Book() { }
 
-        public Book(long id, string title, string isbn, string author)
+        public Book(int id, string title, string isbn, string author)
         {
             this.ID = id;
             this.Title = title;

@@ -16,7 +16,7 @@ namespace ResponseMois.Service
             {
                 return session
                     .CreateCriteria(typeof(Course))
-                    .Add(Restrictions.Eq("teacher_id", (int)user.ID))
+                    .Add(Restrictions.Eq("Teacher", user))
                     .List<Course>();
             }
 

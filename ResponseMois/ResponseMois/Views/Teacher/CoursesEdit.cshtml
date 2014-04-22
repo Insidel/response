@@ -26,11 +26,11 @@
     {
 
         <tr>
-            <td>@c.name</td>
+            <td><a href="@Url.Action("CourseDetail", "Teacher", new {id = @c.ID})">@c.name</a></td>
             <td>@c.schoolYear</td>
             <td>@c.meetingTime</td>
             <td>@c.note</td>
-            <td><a href="@Url.Action("course/detail", "Teacher")"><span class="glyphicon glyphicon-edit"></span></a></td>
+            <td><a href="@Url.Action("CourseEdit", "Teacher")"><span class="glyphicon glyphicon-edit"></span></a></td>
             <td><a href="@Url.Action("CourseRemove", "Teacher", new {id = @c.ID})"><span class="glyphicon glyphicon-remove"></span></a></td>   
         </tr>
     }

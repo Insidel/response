@@ -15,10 +15,15 @@ namespace ResponseMois.Service
 
         protected IEntityManager<T> EntityManager { get { return entityMng; } }
 
-        public T FindById(long id)
+        public T FindById(int id)
         {
             return EntityManager.Find(new T(), id);
         }
+        public T FindByIdLazy(int id)
+        {
+            return EntityManager.FindLazy(new T(), id);
+        }
+
 
         public IList<T> GetAll(String from)
         {

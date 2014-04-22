@@ -8,7 +8,7 @@
       <generator class="identity" />
     </id>
     <property name="name" />
-    <property name="teacher_id" />
+    <many-to-one name="Teacher" column="Teacher" cascade="all-delete-orphan" class="ResponseMois.Model.User, ResponseMois" update="true" />
     <property name="schoolYear" />
     <property name="meetingTime" />
     <property name="note" />
