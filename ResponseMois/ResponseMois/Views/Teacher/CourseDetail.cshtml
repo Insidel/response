@@ -9,9 +9,8 @@
 <b>čas konání:</b> @c.meetingTime <br />
 <b>vyučující:</b> @c.Teacher.firstName @c.Teacher.lastName <br /><br />
 
-
-@Html.ActionLink("Přiřazení studenta ke kurzu", "CourseAssignStudents", "Teacher", new { @class = "btn btn-success" })
-@Html.ActionLink("Přiřazení testu ke kurzu", "CourseAssignTests", "Teacher", new { @class = "btn btn-success" })
+<a class="btn btn-success" href="@Url.Action("CourseAssignStudents", "Teacher", new { id = @c.ID})">Přiřazení studenta ke kurzu</a>
+<a class="btn btn-success" href="@Url.Action("CourseAssignTests", "Teacher", new { id = @c.ID})">Přiřazení testu ke kurzu</a>
 
 <h2>Studenti v kurzu</h2>
 

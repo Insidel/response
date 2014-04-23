@@ -15,8 +15,10 @@
     
     foreach (var st in ViewBag.students)
     {
-            <input type="checkbox" name="students[]" value="@st.ID" /> @st.firstName @st.lastName @st.birthDate <br />
+            <input type="checkbox" name="selectedObjects" value="@st.ID" /> @st.firstName @st.lastName @st.birthDate <br />
     }
+    
+    <input type="hidden" name="courseID" value="@ViewBag.courseID" />
     
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">

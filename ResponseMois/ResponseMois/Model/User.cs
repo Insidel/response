@@ -22,6 +22,13 @@ namespace ResponseMois.Model
         public virtual int telephoneParent { get; set; }
         public virtual string emailParent { get; set; }
         public virtual string class_teacher_id { get; set; }
+        
+        public virtual IList<Course> Courses { get; set; }
+
+        public virtual void addCourse(Course course)
+        {
+            Courses.Add(course);
+        }
 
         public User(){
 

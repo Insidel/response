@@ -13,6 +13,13 @@ namespace ResponseMois.Model
         public virtual DateTime meetingTime { get; set; }
         public virtual string note { get; set; }
 
+        public virtual IList<User> Students { get; set; }
+
+        public virtual void addStudent(User Student) 
+        {
+            Students.Add(Student);
+        }
+
         public Course()
         {
 

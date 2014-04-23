@@ -10,6 +10,7 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using NHibernate;
 
 namespace ResponseMois.Controllers
 {
@@ -188,7 +189,6 @@ namespace ResponseMois.Controllers
             CourseService courseService = new CourseService();
             ViewBag.course = courseService.FindByIdLazy((int)id);
 
-
             ViewBag.teacher = ViewBag.course.Teacher;
 
             return View();
@@ -197,12 +197,13 @@ namespace ResponseMois.Controllers
 
         //
         // GET: /Teacher/CourseAssignStudents
-        public ActionResult CourseAssignStudents()
+        public ActionResult CourseAssignStudents(int id)
         {
             UserService userService = new UserService();
             IList<User> userList = userService.GetAllStudents();  //GetAllStudentsNotInCourse();
 
             ViewBag.students = userList;
+            ViewBag.courseID = id;
 
             return View();
         }
@@ -212,11 +213,23 @@ namespace ResponseMois.Controllers
         // POST: /Teacher/CourseAssignStudents
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CourseAssignStudents(Course model)
+        public ActionResult CourseAssignStudents(int[] selectedObjects, int courseID)
         {
-               //TODO many-to-many
-         
-            return View();
+            UserService userService = new UserService();
+            CourseService courseService = new CourseService();
+
+            Course c = courseService.FindByIdLazy(courseID);
+
+            foreach (int checkBoxSelected in selectedObjects)
+            {
+                User u = userService.FindByIdLazy(checkBoxSelected);
+                c.addStudent(u);
+                u.addCourse(c);
+                userService.Persist(u);
+                courseService.Persist(c);
+            }
+
+            return RedirectToAction("CourseDetail/"+courseID, new { Message = "Student byl pridan." });
         }
 
 

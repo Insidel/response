@@ -9,6 +9,12 @@
     </id>
     <property name="name" />
     <many-to-one name="Teacher" column="Teacher" cascade="all-delete-orphan" class="ResponseMois.Model.User, ResponseMois" update="true" />
+   
+    <bag name="Students" table="Student_x_Course">
+    <key column="CourseID"/>
+    <many-to-many class="User" column="StudentID"  />
+    </bag>
+    
     <property name="schoolYear" />
     <property name="meetingTime" />
     <property name="note" />
