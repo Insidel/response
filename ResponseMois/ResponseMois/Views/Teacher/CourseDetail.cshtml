@@ -13,7 +13,19 @@
 <a class="btn btn-success" href="@Url.Action("CourseAssignTests", "Teacher", new { id = @c.ID})">Přiřazení testu ke kurzu</a>
 
 <h2>Studenti v kurzu</h2>
+<table class="table table-striped">
+    <tr>
+        <th>Student</th>
+    </tr>
+    @foreach (var sic in ViewBag.studentsInCourse)
+    {
 
+        <tr>
+            <td>@sic.firstName @sic.lastName</td>
+            <td><a href="@Url.Action("StudentRemoveFromCourse", "Teacher", new {id = @c.ID})"><span class="glyphicon glyphicon-remove"></span></a></td>
+        </tr>
+    }
+</table>
 
 <h2>Testy v kurzu</h2>
 

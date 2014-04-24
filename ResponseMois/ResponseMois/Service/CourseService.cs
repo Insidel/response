@@ -22,6 +22,21 @@ namespace ResponseMois.Service
 
         }
 
+        public IList<Course> GetAllStudentsToCourse(Course course)
+        {
+            using (ISession session = NHibernateHelper.OpenSession())
+            {
+              /**
+                return session
+                    .CreateCriteria(typeof(Course))
+                    .CreateAlias("Students", "sxc")
+                    .Add(Restrictions.Eq("sxc.CourseID", course.ID))
+                    .List<User>();
+                **/
+            }
+
+        }
+
 
 
     }

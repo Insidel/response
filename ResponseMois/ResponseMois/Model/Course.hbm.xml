@@ -3,18 +3,16 @@
                    assembly="ResponseMois"
                    namespace="ResponseMois.Model">
 
-  <class name="Course" table="Course">
+  <class name="Course" table="Course" lazy="false">
     <id name="ID">
       <generator class="identity" />
     </id>
     <property name="name" />
     <many-to-one name="Teacher" column="Teacher" cascade="all-delete-orphan" class="ResponseMois.Model.User, ResponseMois" update="true" />
-   
-    <bag name="Students" table="Student_x_Course">
-    <key column="CourseID"/>
-    <many-to-many class="User" column="StudentID"  />
-    </bag>
-    
+    <bag  name="Students" table="Student_x_Course" lazy="true" >
+      <key column="CourseID"/>
+      <many-to-many class="User" column="StudentID"/>
+    </bag >
     <property name="schoolYear" />
     <property name="meetingTime" />
     <property name="note" />

@@ -116,3 +116,5 @@ C:\xampp\htdocs\response-mois\ResponseMois\ResponseMois\bin\Microsoft.Owin.Secur
 C:\xampp\htdocs\response-mois\ResponseMois\ResponseMois\obj\Debug\ResponseMois.csprojResolveAssemblyReference.cache
 C:\xampp\htdocs\response-mois\ResponseMois\ResponseMois\obj\Debug\ResponseMois.dll
 C:\xampp\htdocs\response-mois\ResponseMois\ResponseMois\obj\Debug\ResponseMois.pdb
+C:\xampp\htdocs\response-mois\ResponseMois\ResponseMois\bin\log4net.dll
+C:\xampp\htdocs\response-mois\ResponseMois\ResponseMois\bin\log4net.xml

@@ -187,9 +187,12 @@ namespace ResponseMois.Controllers
         public ActionResult CourseDetail(int id)
         {
             CourseService courseService = new CourseService();
-            ViewBag.course = courseService.FindByIdLazy((int)id);
-
+            UserService userService = new UserService();
+            Course c = courseService.FindByIdLazy((int)id);
+            ViewBag.course = c;
             ViewBag.teacher = ViewBag.course.Teacher;
+            //ViewBag.studentsInCourse = courseService.GetAllStudentsToCourse(c);
+            
 
             return View();
         }
@@ -218,15 +221,17 @@ namespace ResponseMois.Controllers
             UserService userService = new UserService();
             CourseService courseService = new CourseService();
 
-            Course c = courseService.FindByIdLazy(courseID);
+
+            User u = null;
+            ISession session = NHibernateHelper.OpenSession();
+            var c = session.Get<Course>(courseID);
 
             foreach (int checkBoxSelected in selectedObjects)
             {
-                User u = userService.FindByIdLazy(checkBoxSelected);
-                c.addStudent(u);
-                u.addCourse(c);
-                userService.Persist(u);
-                courseService.Persist(c);
+                u = userService.FindByIdLazy(checkBoxSelected);
+                c.Students.Add(u);
+                session.Flush();
+                
             }
 
             return RedirectToAction("CourseDetail/"+courseID, new { Message = "Student byl pridan." });

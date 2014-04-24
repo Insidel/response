@@ -18,12 +18,15 @@ namespace ResponseMois.Model
         public virtual void addStudent(User Student) 
         {
             Students.Add(Student);
+            
         }
 
         public Course()
         {
-
+            //Students = new List<User>();
         }
+
+
 
 
     }

@@ -22,7 +22,7 @@ namespace ResponseMois.Model
         public virtual int telephoneParent { get; set; }
         public virtual string emailParent { get; set; }
         public virtual string class_teacher_id { get; set; }
-        
+
         public virtual IList<Course> Courses { get; set; }
 
         public virtual void addCourse(Course course)
@@ -31,7 +31,7 @@ namespace ResponseMois.Model
         }
 
         public User(){
-
+           //Courses = new List<Course>();
         }
         public User(string userName, string password, string role, string firstName, string lastName, DateTime birthDate, string sex, string address, string city,
                     int postNumaber, int telephone, string email, int telephoneParent, string emailParent, string class_teacher_id)

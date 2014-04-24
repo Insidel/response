@@ -22,11 +22,7 @@
     <property name="telephoneParent" />
     <property name="emailParent" />
     <property name="class_teacher_id" />
-    
-    <bag name="Courses" table="Student_x_Course" inverse="true">
-      <key column="StudentID"/>
-      <many-to-many class="Course" column="CourseID"/>
-    </bag>
+
     
   </class>
 
