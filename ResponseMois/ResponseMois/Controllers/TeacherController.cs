@@ -165,6 +165,11 @@ namespace ResponseMois.Controllers
         // GET: /Teacher/CourseRemove
         public ActionResult CourseRemove(int id)
         {
+            ISession session = NHibernateHelper.OpenSession();
+            var c = session.Get<Course>(id);
+            c.Students = null;
+            session.Flush();           
+
             CourseService courseService = new CourseService();
             courseService.Delete<Course>(id);
 
@@ -191,8 +196,8 @@ namespace ResponseMois.Controllers
             Course c = courseService.FindByIdLazy((int)id);
             ViewBag.course = c;
             ViewBag.teacher = ViewBag.course.Teacher;
-            //ViewBag.studentsInCourse = courseService.GetAllStudentsToCourse(c);
-            
+            ViewBag.studentsInCourse = c.Students;
+
 
             return View();
         }
@@ -235,6 +240,19 @@ namespace ResponseMois.Controllers
             }
 
             return RedirectToAction("CourseDetail/"+courseID, new { Message = "Student byl pridan." });
+        }
+
+        //
+        // GET: /Teacher/CourseAssignStudents
+        public ActionResult StudentRemoveFromCourse(int studentID, int courseID)
+        {
+            ISession session = NHibernateHelper.OpenSession();
+            var c = session.Get<Course>(courseID);
+            var u = session.Get<User>(studentID);
+            c.Students.Remove(u);
+            session.Flush();
+
+            return RedirectToAction("CourseDetail/"+courseID, new { Message = "Student byl odebran." });
         }
 
 

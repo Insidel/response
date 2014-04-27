@@ -22,7 +22,7 @@
 
         <tr>
             <td>@sic.firstName @sic.lastName</td>
-            <td><a href="@Url.Action("StudentRemoveFromCourse", "Teacher", new {id = @c.ID})"><span class="glyphicon glyphicon-remove"></span></a></td>
+            <td><a href="@Url.Action("StudentRemoveFromCourse", "Teacher", new {studentID = @sic.ID, courseID = @c.ID})"><span class="glyphicon glyphicon-remove"></span></a></td>
         </tr>
     }
 </table>

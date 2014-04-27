@@ -254,6 +254,7 @@
     <Content Include="Views\Teacher\CourseAdd.cshtml" />
     <Content Include="Views\Teacher\CourseDetail.cshtml" />
     <Content Include="Views\Teacher\CourseAssignStudents.cshtml" />
+    <Content Include="Views\Student\CourseDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

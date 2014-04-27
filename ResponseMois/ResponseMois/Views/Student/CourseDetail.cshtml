@@ -1,0 +1,21 @@
+﻿@model ResponseMois.Model.Course
+@{
+    var c = ViewBag.course;
+    ViewBag.Title = "Detail kurzu - " + @c.name;
+}
+
+<h1>Detail kurzu - @c.name</h1>
+<b>rok:</b> @c.schoolYear <br />
+<b>čas konání:</b> @c.meetingTime <br />
+<b>vyučující:</b> @c.Teacher.firstName @c.Teacher.lastName <br /><br />
+
+
+
+<h2>Testy v kurzu</h2>
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

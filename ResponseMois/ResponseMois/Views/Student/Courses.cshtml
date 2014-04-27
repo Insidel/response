@@ -5,7 +5,31 @@
 <h2>@ViewBag.Title.</h2>
 <h3>@ViewBag.Message</h3>
 
-<p>Sekce pro přehled krzů studenta a výsůedl§</p>
+<p>Sekce pro přehled krzů studenta </p>
 
 
 <h4>Přehled kurzů</h4>
+
+<table class="table table-striped">
+    <tr>
+        <th>Kurz</th>
+        <th>Čas</th>
+        <th>Rok</th>
+        <th>Poznamka</th>
+        <th>Vyucujici</th>
+    </tr>
+    @foreach (var sc in ViewBag.studentCourses)
+    {
+
+        <tr>
+            <td><a href="@Url.Action("CourseDetail", "Student", new {id = @sc.ID})">@sc.name</a></td>
+            <td>@sc.meetingTime</td>
+            <td>@sc.schoolYear </td>
+            <td>@sc.note </td>
+            <td>@sc.Teacher.firstName @sc.Teacher.lastName</td>
+        </tr>
+    }
+</table>
+
+
+

@@ -59,12 +59,13 @@ namespace ResponseMois.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Invalid username or password.");
+                    ModelState.AddModelError("UserEmail", "Invalid username or password.");
+                    // return RedirectToAction("Login/", new { Message = "Invalid username or password." });
                 }
             }
 
             // If we got this far, something failed, redisplay form
-            return View(model);
+            return View();
         }
 
         //

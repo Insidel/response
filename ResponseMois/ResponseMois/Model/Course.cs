@@ -15,6 +15,8 @@ namespace ResponseMois.Model
 
         public virtual IList<User> Students { get; set; }
 
+        //public virtual ICollection<CoursesStudents> CoursesStudents { get; set; }
+
         public virtual void addStudent(User Student) 
         {
             Students.Add(Student);
